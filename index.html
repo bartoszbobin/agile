@@ -12,10 +12,14 @@
             text-align: center;
             font-size: 4rem;
         }
+
+        .qr-code-invert {
+            filter: invert();
+        }
     </style>
 </head>
 <body>
-<div class="container mt-4 gx-4 ">
+<div class="container mt-4 mb-4">
 
     <div class="card-group mb-4 gx-4 ">
         <div class="card" data-sp="0.5">
@@ -98,6 +102,9 @@
 
     </div>
 </div>
+
+<img src="qr-code.png" alt="qr-code" class="qr-code rounded mx-auto d-block" style="max-height: 300px;"/>
+
 <script>
     const allSps = [0.5, 1, 2, 3, 5, 8].map((v, index, arr) => ({
         value: v,
@@ -166,7 +173,9 @@
                 document.documentElement.setAttribute('data-bs-theme', theme)
             }
         }
-
+        if (getPreferredTheme() === 'dark') {
+            document.querySelector('.qr-code').classList.add('qr-code-invert');
+        }
         setTheme(getPreferredTheme())
 
         const showActiveTheme = (theme, focus = false) => {
